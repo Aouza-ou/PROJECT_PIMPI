@@ -1,0 +1,72 @@
+# MASTER CONFIGURATION FILE FOR MOE PIPELINE
+
+# General Settings
+general:
+  device: "cuda"
+  seed: 42
+
+# File & Directory Paths
+paths:
+  data_dir: "MOE/DATA"
+  full_data_filename: "train.parquet"
+  subset_filename: "train.parquet"
+  checkpoint_dir: "checkpoints"
+  tokenizer_filename: "tokenizer.pt"
+  best_params_filename: "best_hpo_params.json"
+
+# Tokenizer Settings
+tokenizer:
+  max_smiles_len: 121
+
+# Model: Adaptive Spectral Encoder
+adaptive_encoder:
+  peak_hidden_dim: 64
+  max_peaks: 500
+  embed_dim: 256
+  latent_dim: 256
+  num_heads: 4
+  dropout: 0.1
+  act_type: "gelu"
+
+# Model: Structural SMILES Decoder
+structural_decoder:
+  embed_dim: 256
+  num_layers: 3
+  num_heads: 8
+  dropout: 0.1
+  act_type: "gelu"
+  max_seq_len: 4096
+  num_memory_tokens: 8
+
+# Hyperparameter Optimization (HPO) Settings
+hpo:
+  subset_size: 50000
+  epochs: 4
+  n_trials: 20
+  search_space:
+    learning_rate:
+      min: 0.000001
+      max: 0.0001
+      log: true
+    batch_size: [64, 128, 256]
+    weight_decay:
+      min: 0.000001
+      max: 0.0001
+      log: true
+    embed_dim: [64, 128, 256]
+    latent_dim: [64, 128, 256]
+    num_layers: [4, 6, 8]
+    num_heads: [4, 8, 16]
+    max_peaks: [512, 1024]
+    dropout:
+      min: 0.1
+      max: 0.3
+
+# Training Settings
+training:
+  batch_size: 10
+  val_batch_size: 10
+  epochs: 15
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  max_grad_norm: 1.0

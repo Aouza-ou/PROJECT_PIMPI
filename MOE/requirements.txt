@@ -1,0 +1,19 @@
+
+# Deep Learning
+torch
+transformers
+
+
+# Data Processing & Mathematics
+numpy
+pandas
+pyarrow
+json
+optuna
+PyYAML
+tqdm
+pathlib
+typing
+
+
+

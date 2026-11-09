@@ -1,0 +1,8 @@
+import torch
+from bertviz import head_view
+
+# Load the snapshot file generated during training
+data = torch.load("bertviz_snapshots/attention_epoch_1.pt")
+
+# Display the interactive attention window
+head_view(data["attention"], data["smiles"])
