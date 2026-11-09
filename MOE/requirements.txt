@@ -8,7 +8,6 @@ transformers
 numpy
 pandas
 pyarrow
-json
 optuna
 PyYAML
 tqdm
