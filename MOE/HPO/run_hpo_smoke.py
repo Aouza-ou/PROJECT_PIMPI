@@ -5,7 +5,7 @@ import torch
 from pathlib import Path
 from tqdm import tqdm
 
-SMOKE_TEST=True
+SMOKE_TEST=False
 SMOKE_TRIALS = 4
 SMOKE_SAMPLES = 500
 SMOKE_EPOCHS = 4 
